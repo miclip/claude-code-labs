@@ -415,20 +415,43 @@
 	}
 
 	/* === two-col layout === */
+	.slide-two-col .slide-inner {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: auto auto 1fr;
+		column-gap: 3em;
+		align-content: start;
+	}
+
+	/* h2 title spans full width */
 	.slide-two-col .slide-inner :global(h2) {
 		grid-column: 1 / -1;
-		margin-bottom: 1em;
+		grid-row: 1;
+		margin-bottom: 1.25em;
 	}
 
-	.slide-two-col .slide-inner :global(ul):first-of-type {
-		float: left;
-		width: 46%;
-		margin-right: 4%;
+	/* Column headers (p > strong) */
+	.slide-two-col .slide-inner :global(p:nth-of-type(1)) {
+		grid-column: 1;
+		grid-row: 2;
+		margin-bottom: 0.5em;
 	}
 
-	.slide-two-col .slide-inner :global(ul):last-of-type {
-		float: right;
-		width: 46%;
+	.slide-two-col .slide-inner :global(p:nth-of-type(2)) {
+		grid-column: 2;
+		grid-row: 2;
+		margin-bottom: 0.5em;
+	}
+
+	/* Lists */
+	.slide-two-col .slide-inner :global(ul:nth-of-type(1)) {
+		grid-column: 1;
+		grid-row: 3;
+	}
+
+	.slide-two-col .slide-inner :global(ul:nth-of-type(2)) {
+		grid-column: 2;
+		grid-row: 3;
 	}
 
 	/* === Logo chrome === */
