@@ -169,7 +169,7 @@
 							{:else if existingPhotoUrl}
 								<img src={existingPhotoUrl} alt={fullName} class="avatar-preview" />
 							{:else}
-								<div class="avatar-placeholder">{fullName ? fullName[0]?.toUpperCase() : '?'}</div>
+								<img src="/logos/claude-robot.png" alt="placeholder" class="avatar-preview" />
 							{/if}
 						</div>
 						<div class="photo-upload">
@@ -223,11 +223,10 @@
 				{#each presenters as p (p.id)}
 					<div class="presenter-card">
 						<div class="card-avatar">
-							{#if p.photo_url}
-								<img src={p.photo_url} alt={p.full_name} />
-							{:else}
-								<div class="avatar-initials">{p.full_name[0]?.toUpperCase()}</div>
-							{/if}
+							<img
+								src={p.photo_url ?? '/logos/claude-robot.png'}
+								alt={p.full_name}
+							/>
 						</div>
 						<div class="card-info">
 							<span class="card-name">{p.full_name}</span>
@@ -341,15 +340,6 @@
 		object-fit: cover;
 	}
 
-	.avatar-placeholder {
-		background: var(--orange);
-		color: #fff;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: 1.75rem;
-		font-weight: 700;
-	}
 
 	.photo-upload {
 		display: flex;
@@ -446,15 +436,6 @@
 		object-fit: cover;
 	}
 
-	.avatar-initials {
-		background: var(--orange);
-		color: #fff;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: 1.3rem;
-		font-weight: 700;
-	}
 
 	.card-info {
 		flex: 1;

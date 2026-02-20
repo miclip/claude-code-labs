@@ -183,7 +183,7 @@
 												{#if p.photo_url}
 													<img src={p.photo_url} alt={p.full_name} />
 												{:else}
-													<span class="check-initial">{p.full_name[0]?.toUpperCase()}</span>
+													<img src="/logos/claude-robot.png" alt={p.full_name} />
 												{/if}
 											</span>
 											<span class="check-info">
@@ -496,18 +496,6 @@
 		object-fit: cover;
 	}
 
-	.check-initial {
-		width: 28px;
-		height: 28px;
-		border-radius: 50%;
-		background: var(--orange);
-		color: #fff;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: 0.8rem;
-		font-weight: 700;
-	}
 
 	.check-info {
 		display: flex;

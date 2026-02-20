@@ -661,15 +661,6 @@
 		object-fit: cover;
 	}
 
-	:global(.sp-initial) {
-		background: #c4714f;
-		color: #fff;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: clamp(1.5rem, 4vw, 3rem);
-		font-weight: 700;
-	}
 
 	:global(.sp-name) {
 		font-size: clamp(0.9rem, 2vw, 1.3rem);
