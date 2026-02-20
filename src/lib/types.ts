@@ -25,6 +25,20 @@ export interface ParsedLab {
 	total_points: number;
 }
 
+export interface ParsedSlide {
+	index: number;
+	type: 'title' | 'welcome' | 'section' | 'content' | 'speakers' | 'two-col';
+	theme: 'light' | 'dark' | 'orange';
+	html: string;
+}
+
+export interface ParsedDeck {
+	slug: string;
+	title: string;
+	description: string;
+	slides: ParsedSlide[];
+}
+
 export interface Session {
 	id: string;
 	lab_slug: string;
@@ -33,6 +47,13 @@ export interface Session {
 	has_join_password: boolean;
 	created_at: string;
 	expires_at: string | null;
+	slide_deck?: string | null;
+	speaker_names?: string | null;
+	event_name?: string | null;
+	company_name?: string | null;
+	wifi_ssid?: string | null;
+	wifi_password?: string | null;
+	api_credit_url?: string | null;
 }
 
 export interface Participant {

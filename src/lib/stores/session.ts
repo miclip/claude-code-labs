@@ -39,27 +39,45 @@ export async function fetchSession(sessionId: string): Promise<Session | null> {
 	if (!supabase) return null;
 	const { data, error } = await supabase
 		.from('sessions')
-		.select('id, lab_slug, lab_title, alias, has_join_password, created_at, expires_at')
+		.select('id, lab_slug, lab_title, alias, has_join_password, created_at, expires_at, slide_deck, speaker_names, event_name, company_name, wifi_ssid, wifi_password, api_credit_url')
 		.eq('id', sessionId)
 		.single();
 	if (error) return null;
 	return data as Session;
 }
 
+export interface CreateSessionOptions {
+	alias?: string;
+	passphrase?: string;
+	joinPassword?: string;
+	slideDeck?: string;
+	speakerNames?: string;
+	eventName?: string;
+	companyName?: string;
+	wifiSsid?: string;
+	wifiPassword?: string;
+	apiCreditUrl?: string;
+}
+
 export async function createSession(
 	labSlug: string,
 	labTitle: string,
-	alias?: string,
-	passphrase?: string,
-	joinPassword?: string
+	options: CreateSessionOptions = {}
 ): Promise<string | null> {
 	if (!supabase) return null;
 	const { data, error } = await supabase.rpc('create_session', {
 		p_lab_slug: labSlug,
 		p_lab_title: labTitle,
-		p_alias: alias || null,
-		p_passphrase: passphrase || null,
-		p_join_password: joinPassword || null
+		p_alias: options.alias || null,
+		p_passphrase: options.passphrase || null,
+		p_join_password: options.joinPassword || null,
+		p_slide_deck: options.slideDeck || null,
+		p_speaker_names: options.speakerNames || null,
+		p_event_name: options.eventName || null,
+		p_company_name: options.companyName || null,
+		p_wifi_ssid: options.wifiSsid || null,
+		p_wifi_password: options.wifiPassword || null,
+		p_api_credit_url: options.apiCreditUrl || null
 	});
 	if (error) {
 		console.error('Failed to create session:', error);
