@@ -451,7 +451,7 @@
 	}
 
 	.logo-forgd {
-		height: clamp(12px, 2vw, 20px);
+		height: clamp(18px, 3.2vw, 32px);
 		width: auto;
 	}
 
