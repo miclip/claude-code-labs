@@ -52,6 +52,16 @@
 			<span class="nav-icon">⚙️</span>
 			Admin
 		</button>
+		{#if session.slide_deck}
+			<a
+				class="nav-item"
+				href="{base}/session/{session.id}/slides"
+				target="_blank"
+			>
+				<span class="nav-icon">🎞️</span>
+				Slides
+			</a>
+		{/if}
 	</nav>
 
 	<div class="sidebar-footer">
