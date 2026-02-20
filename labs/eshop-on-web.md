@@ -4,7 +4,7 @@ title: "Claude Code Tutorial - eShopOnWeb"
 description: "A step-by-step guide to use Claude Code with eShopOnWeb, Microsoft's official ASP.NET Core reference application."
 difficulty: intermediate
 estimated_duration: "90 minutes"
-prerequisites: ["Claude Code installed and set up", ".NET 9 SDK installed", "Git installed"]
+prerequisites: ["Claude Code installed and set up", ".NET SDK installed (version matching the project — check global.json)", "Git installed"]
 tags: [dotnet, aspnet-core, claude-code]
 ---
 
@@ -31,9 +31,9 @@ To debug Claude's actions:
 
 ### Common .NET/ASP.NET Tips
 
-- Run `dotnet --info` to verify your SDK version matches the project requirements.
+- Run `dotnet --info` to verify your SDK version matches the project's `global.json` requirements.
 - Use `dotnet watch run --project src/Web` for hot reload during development.
-- The app uses an in-memory database by default — no external database setup needed.
+- The app defaults to SQL Server LocalDB, but we'll configure it to use an **in-memory database** for this workshop — no external database setup needed.
 - If restore fails, try `dotnet nuget locals all --clear` to clear the NuGet cache.
 
 ### Resources
@@ -94,13 +94,15 @@ Run `/model` to select your preferred model.
 
 <!-- step: { "id": "step-3", "points": 10, "category": "core" } -->
 
-Start the development server:
+First, configure the app to use an in-memory database so you don't need SQL Server:
 
 ```
-Restore dependencies and run the eShopOnWeb web application
+Add "UseOnlyInMemoryDatabase": true to src/Web/appsettings.json, then restore dependencies and run the web application
 ```
 
-Claude will run `dotnet restore` followed by `dotnet run --project src/Web`, which compiles the project and launches the app at `localhost:5001` as a background task (`Ctrl+B`). The in-memory database is automatically seeded with sample catalog data — no external database setup needed.
+Claude will add the in-memory database setting to `appsettings.json`, run `dotnet restore`, then `dotnet run --project src/Web`, which compiles the project and launches the app at `https://localhost:5001` as a background task (`Ctrl+B`). The in-memory database is automatically seeded with sample catalog data.
+
+> **Note:** Without the `UseOnlyInMemoryDatabase` setting, the app defaults to SQL Server LocalDB which may not be available on your system. The in-memory option is perfect for this workshop.
 
 Keep the background task running. Explore the app for a few minutes:
 - Browse the **product catalog** and filter by brand or type

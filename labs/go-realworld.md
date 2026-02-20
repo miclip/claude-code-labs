@@ -98,15 +98,15 @@ Run `/model` to select your preferred model.
 Start the development server:
 
 ```
-Download Go dependencies and run the application
+Download Go dependencies and run the application using go run hello.go
 ```
 
-Claude will run `go mod download` followed by `go run .`, which compiles and launches the API server at `localhost:8080` as a background task (`Ctrl+B`). The app uses SQLite by default — no external database setup needed.
+Claude will run `go mod download` followed by `go run hello.go`, which compiles and launches the API server at `localhost:8080` as a background task (`Ctrl+B`). The app uses SQLite by default — no external database setup needed.
 
 Keep the background task running. Since this is an API-only app, test it with curl:
+- `curl localhost:8080/api/ping/` — Health check (returns `{"message":"pong"}`)
 - `curl localhost:8080/api/articles` — List articles
 - `curl localhost:8080/api/tags` — List tags
-- Check the API health endpoint
 
 > **Note:** This is an API-only application — there's no web UI yet. In Step 6, you'll use Claude Code to add HTML views!
 
@@ -283,7 +283,7 @@ Ask Claude to use the MCP to test the new feature:
 
 ```
 Use Playwright MCP to test the new HTML article viewer:
-  1. Start the app (go run .)
+  1. Start the app (go run hello.go)
   2. Navigate to localhost:8080
   3. Verify the homepage shows a list of articles
   4. Click on an article and verify the detail page renders

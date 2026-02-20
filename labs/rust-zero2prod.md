@@ -4,7 +4,7 @@ title: "Claude Code Tutorial - Zero To Production (Rust)"
 description: "A step-by-step guide to use Claude Code with Zero To Production, the canonical Rust web development book's application built with Actix-web."
 difficulty: advanced
 estimated_duration: "90 minutes"
-prerequisites: ["Claude Code installed and set up", "Rust toolchain installed (rustup)", "Docker installed (for PostgreSQL)", "Git installed"]
+prerequisites: ["Claude Code installed and set up", "Rust toolchain installed (rustup)", "Docker installed (for PostgreSQL and Redis)", "Git installed"]
 tags: [rust, actix-web, claude-code]
 ---
 
@@ -33,7 +33,7 @@ To debug Claude's actions:
 
 - Use `cargo check` for fast validation before running full builds — it skips code generation and is much faster than `cargo build`.
 - Borrow checker errors are Rust's most common stumbling block — always paste the full compiler output to Claude.
-- Check that your Docker container for PostgreSQL is running if you get database connection errors.
+- Check that your Docker containers for PostgreSQL and Redis are running if you get connection errors (`docker ps`).
 - Use `cargo clippy` to catch common Rust mistakes and non-idiomatic patterns.
 - First build will be slow as Rust compiles all dependencies — subsequent builds are incremental.
 
@@ -96,13 +96,15 @@ Run `/model` to select your preferred model.
 
 <!-- step: { "id": "step-3", "points": 10, "category": "core" } -->
 
-This app requires PostgreSQL. Start the database first, then run the app:
+This app requires PostgreSQL and Redis. Start the backing services first, then run the app:
 
 ```
-Start the PostgreSQL database using the project's init_db script, then build and run the application with cargo run
+Start PostgreSQL using the project's scripts/init_db.sh, start Redis using scripts/init_redis.sh, then build and run the application with cargo run
 ```
 
-Claude will launch the PostgreSQL Docker container using the project's `scripts/init_db.sh` script, then run `cargo run` to compile and start the Actix-web server at `localhost:8000` as a background task (`Ctrl+B`).
+Claude will launch the PostgreSQL and Redis Docker containers using the project's initialization scripts, then run `cargo run` to compile and start the Actix-web server at `localhost:8000` as a background task (`Ctrl+B`).
+
+> **Note:** The `sqlx` CLI is required by `init_db.sh` for running migrations. If it's not installed, Claude will run `cargo install sqlx-cli --version '~0.8' --features rustls,postgres --no-default-features` first.
 
 > **Note:** The first build will take a few minutes as Rust compiles all dependencies. Subsequent builds are much faster.
 
