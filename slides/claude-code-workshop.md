@@ -15,6 +15,8 @@ curl -fsSL https://claude.ai/install.sh | bash
 
 **WiFi:** {{wifi_ssid}} &nbsp;|&nbsp; **Password:** {{wifi_password}}
 
+**API Credits:** {{api_credit_url}}
+
 ---
 
 <!-- slide: {"type": "title", "theme": "dark"} -->
@@ -33,123 +35,124 @@ curl -fsSL https://claude.ai/install.sh | bash
 
 ---
 
+<!-- slide: {"type": "content", "theme": "light"} -->
+## Agenda
+
+- Introductions
+- Claude Code Overview
+- Hands-on Building Pt.1
+- Deeper Dive
+- Hands-on Building Pt.2
+- Show & Tell
+- Q & A
+
+---
+
 <!-- slide: {"type": "section", "theme": "orange"} -->
 # What is Claude Code?
 
 ---
 
 <!-- slide: {"type": "content", "theme": "light"} -->
-## Claude Code
+## Claude Opus 4.5
 
-An **agentic coding tool** that lives in your terminal and understands your entire codebase.
+Our most intelligent model — sets a new standard across coding, agents, and office tasks.
 
-- Reads, edits, and writes files
-- Runs tests and shell commands
-- Searches the web and fetches docs
-- Manages git workflows end-to-end
-- Calls external tools via MCP servers
+- **3x cheaper than Opus 4.1** at the same frontier intelligence level
+- Excels at professional software engineering tasks
+- Best model for **production code** and **sophisticated agents**
+- Produces documents, spreadsheets, and presentations with professional polish
 
-> Claude Code operates with agency — it takes actions, not just suggestions.
-
----
-
-<!-- slide: {"type": "two-col", "theme": "light"} -->
-## Agentic vs. Copilot
-
-**IDE Copilot**
-
-- Autocomplete suggestions
-- Single-file awareness
-- You drive every edit
-- Stateless interactions
-
-**Claude Code (Agentic)**
-
-- Multi-step task execution
-- Full-repo understanding
-- Iterates autonomously
-- Maintains context across files
+> "Opus 4.5 is now at a price point where it can be your go-to model for most tasks. It's the clear winner and exhibits the best frontier task planning and tool calling we've seen yet." — Jeff Wang, CEO
 
 ---
 
 <!-- slide: {"type": "content", "theme": "light"} -->
-## Key Capabilities
+## Claude Sonnet 4.5
 
-- **Understand** — reads your entire codebase, not just the open file
-- **Edit** — makes precise, targeted changes across many files
-- **Run** — executes tests, builds, linters and interprets results
-- **Search** — finds patterns, definitions, and usage across the repo
-- **Plan** — breaks complex tasks into steps and tracks progress
-- **Extend** — connects to databases, APIs, and services via MCP
+Leading model for complex agents and coding — **77.2% on SWE-bench Verified**.
+
+- Balances high quality, cost-effectiveness, and responsiveness
+- Ideal for most AI applications and enterprise workflows
+- Handles tools, memory, and context better than any prior Claude model
+
+**Target use cases:** Long-running agents, coding, cybersecurity, financial services, browser and computer use, office tasks, research
+
+> "We're seeing state-of-the-art coding performance, with significant improvements on longer horizon tasks. It reinforces why many developers using Cursor choose Claude for their most complex problems." — Michael Truell, CEO, Cursor
+
+---
+
+<!-- slide: {"type": "two-col", "theme": "light"} -->
+## On the Frontier of Agentic Coding
+
+**Workflows**
+
+- Summarization, classification, extraction
+- LLMs orchestrated by code
+
+**Agents**
+
+- LLMs deciding their own trajectories
+- Agency ↑
+- Capability ↑
+- Flexibility ↑
+
+---
+
+<!-- slide: {"type": "content", "theme": "light"} -->
+## Introducing Claude Code
+
+An **agentic command-line tool** that lets developers delegate complex tasks while maintaining transparency and control.
+
+- Reads, edits, and writes files across your entire codebase
+- Runs tests, builds, and shell commands — interprets results
+- Searches the web and fetches documentation
+- Manages git workflows end-to-end
+- Connects to external tools and services via MCP
+
+> Optimized to work with Anthropic's frontier models, Claude Code can handle a broad range of coding tasks, accelerating dev work.
+
+---
+
+<!-- slide: {"type": "content", "theme": "light"} -->
+## Not Just for Writing Code
+
+Claude Code helps at every step of a project:
+
+**1. Discover** — Explore codebase, search docs, onboard & setup
+
+**2. Design** — Plan projects, develop tech specs, define architecture
+
+**3. Build** — Implement code, write & execute tests, create commits & PRs
+
+**4. Deploy** — Automate CI/CD, configure environments, manage deployments
+
+**5. Support & Scale** — Debug errors, large-scale refactors, monitor usage & performance
 
 ---
 
 <!-- slide: {"type": "section", "theme": "orange"} -->
-# Getting Started
+# Give Claude Context
 
 ---
 
-<!-- slide: {"type": "content", "theme": "dark"} -->
-## Installation & Auth
+<!-- slide: {"type": "content", "theme": "light"} -->
+## More Context = Better Performance
 
-```bash
-# Install
-curl -fsSL https://claude.ai/install.sh | bash
+Ways to give Claude more context:
 
-# Authenticate
-claude
-# Follow the browser OAuth flow
-
-# Verify
-claude --version
-```
-
-Requires: **Node.js 18+** or use the API key flow with `--api-key`
-
----
-
-<!-- slide: {"type": "content", "theme": "dark"} -->
-## Core Commands
-
-```bash
-# Start interactive session
-claude
-
-# One-shot task
-claude "add error handling to src/api.ts"
-
-# Ask a question
-claude "explain how the auth middleware works"
-
-# Continue last session
-claude --continue
-
-# Resume a specific session
-claude --resume <session-id>
-```
-
----
-
-<!-- slide: {"type": "content", "theme": "dark"} -->
-## Slash Commands (in session)
-
-```
-/help          — list all commands
-/compact       — summarise & compress context
-/clear         — start a fresh context window
-/cost          — show token usage & cost
-/status        — model info, memory, MCP tools
-/review        — code review for staged changes
-/commit        — write and commit a message
-/pr-comments   — respond to PR review comments
-```
+- **CLAUDE.md** — project-level instructions and conventions
+- **@mention filenames** — focus Claude on specific files
+- **@mention MCP resources** — connect to external data sources
+- **Paste errors and logs** — let Claude see exactly what you see
+- **Share screenshots** — visual context for UI issues (`Ctrl+V`)
 
 ---
 
 <!-- slide: {"type": "content", "theme": "light"} -->
 ## CLAUDE.md — Project Memory
 
-Create a `CLAUDE.md` at the root of your repo:
+A readme that gives Claude instructions on project structure, common commands, and styling conventions — read at the start of every session.
 
 ```markdown
 # Project Context
@@ -157,7 +160,6 @@ Create a `CLAUDE.md` at the root of your repo:
 ## Stack
 - SvelteKit + TypeScript frontend
 - Supabase (PostgreSQL + RLS) backend
-- Deployed on Vercel
 
 ## Commands
 - `npm run dev` — start dev server
@@ -168,58 +170,27 @@ Create a `CLAUDE.md` at the root of your repo:
 - Prefer `$state` runes over writable stores
 ```
 
-Claude reads this on every session start.
+---
+
+<!-- slide: {"type": "content", "theme": "light"} -->
+## CLAUDE.md — Hierarchical
+
+Manage instructions across repositories and users:
+
+- **Monorepo/CLAUDE.md** — System overview, modernization strategy, team structure
+- **Repo/CLAUDE.md** — Component architecture, technical debt, migration plans
+- **Submodule/frontend/CLAUDE.md** — UI patterns, component library, test strategy
+- **Submodule/backend/CLAUDE.md** — API design, data modules, service architecture
+- **~/.claude/CLAUDE.md** — Personal preferences, error handling, global instructions
 
 ---
 
 <!-- slide: {"type": "section", "theme": "orange"} -->
-# Advanced Features
+# Extend Claude Code
 
 ---
 
-<!-- slide: {"type": "content", "theme": "light"} -->
-## Extended Thinking
-
-Some problems need deeper reasoning before acting.
-
-```bash
-claude --thinking "redesign the data model to support multi-tenancy"
-```
-
-Claude will:
-1. Reason through the problem space
-2. Explore trade-offs
-3. Propose a plan before making changes
-
-Best for: architecture decisions, complex refactors, debugging subtle bugs.
-
----
-
-<!-- slide: {"type": "content", "theme": "light"} -->
-## Hooks
-
-Run shell commands automatically on Claude Code events:
-
-```json
-// ~/.claude/settings.json
-{
-  "hooks": {
-    "PostToolUse": [{
-      "matcher": "Write|Edit",
-      "hooks": [{"type": "command", "command": "npm run lint"}]
-    }],
-    "Stop": [{
-      "hooks": [{"type": "command", "command": "say 'Claude is done'"}]
-    }]
-  }
-}
-```
-
-**Hook events:** `PreToolUse`, `PostToolUse`, `Notification`, `Stop`
-
----
-
-<!-- slide: {"type": "content", "theme": "light"} -->
+<!-- slide: {"type": "content", "theme": "dark"} -->
 ## Model Context Protocol (MCP)
 
 Connect Claude Code to external tools and data sources:
@@ -228,114 +199,22 @@ Connect Claude Code to external tools and data sources:
 # Add a server
 claude mcp add postgres -- npx @modelcontextprotocol/server-postgres $DATABASE_URL
 
-# Use in session
+# Manage servers in session
+/mcp
+
+# Use it
 claude "show me all users who signed up this week"
 ```
 
-**Popular MCP servers:**
-- `@modelcontextprotocol/server-postgres` — query your DB
-- `@modelcontextprotocol/server-github` — manage issues & PRs
-- `@modelcontextprotocol/server-slack` — post messages
-- `@modelcontextprotocol/server-filesystem` — extended file access
+Server configurations are written to `.mcp.json`.
 
----
-
-<!-- slide: {"type": "content", "theme": "light"} -->
-## Sub-Agents & Parallelism
-
-Claude Code can spin up sub-agents to work in parallel:
-
-```
-claude "run all three migration scripts in parallel,
-        verify each succeeds, then run the test suite"
-```
-
-Sub-agents can:
-- Work on independent branches simultaneously
-- Aggregate results back to the parent session
-- Be orchestrated with the Task tool in custom agents
-
----
-
-<!-- slide: {"type": "content", "theme": "light"} -->
-## Custom Slash Commands
-
-Create project-specific commands in `.claude/commands/`:
-
-```markdown
-<!-- .claude/commands/deploy.md -->
-# Deploy to Staging
-
-Run the full pre-deploy checklist:
-1. `npm run build`
-2. `npm test`
-3. Check for TODO comments in staged files
-4. Push to `staging` branch
-```
-
-Then use `/deploy` in any Claude Code session in this repo.
+**Popular servers:** postgres, github, slack, filesystem
 
 ---
 
 <!-- slide: {"type": "section", "theme": "orange"} -->
-# Tips & Best Practices
-
----
-
-<!-- slide: {"type": "content", "theme": "light"} -->
-## Prompt Patterns That Work
-
-**Be specific about scope:**
-> "Update only `src/lib/auth.ts` — don't touch any other files"
-
-**Provide examples:**
-> "Follow the same pattern as `CreateSession.svelte` when building `EditSession.svelte`"
-
-**Ask for a plan first:**
-> "Before making changes, explain your approach"
-
-**Iterate, don't micromanage:**
-> Let Claude complete the full task, then review and refine
-
----
-
-<!-- slide: {"type": "content", "theme": "light"} -->
-## When Claude Gets Stuck
-
-- Use `/compact` to free up context before a big task
-- Add more detail to `CLAUDE.md` if Claude misses conventions
-- Break large tasks into smaller, verifiable steps
-- Use `--thinking` for architectural or debugging problems
-- Check `/cost` if responses slow down — you may be near context limit
-
----
-
-<!-- slide: {"type": "content", "theme": "dark"} -->
-## API Access
-
-Get API credits for today's workshop:
-
-**{{api_credit_url}}**
-
-Your Claude Code already uses your personal account. These credits are for building your own apps with the Anthropic API directly.
-
-```bash
-# In your code
-npm install @anthropic-ai/sdk
-
-# Quick test
-export ANTHROPIC_API_KEY=sk-...
-node -e "const Anthropic = require('@anthropic-ai/sdk');
-         const c = new Anthropic();
-         c.messages.create({model:'claude-opus-4-5',
-           max_tokens:100, messages:[{role:'user',content:'hi'}]})
-         .then(r => console.log(r.content[0].text))"
-```
-
----
-
-<!-- slide: {"type": "section", "theme": "orange"} -->
-# Lab Time
+# Hands-on Workshop
+### Part 1
 
 ---
 
@@ -349,6 +228,187 @@ Open your lab in the browser and follow the steps:
 **Questions?** Raise your hand or ask in the chat.
 
 **Goal:** Complete as many steps as you can — bonus points for going beyond the instructions!
+
+---
+
+<!-- slide: {"type": "section", "theme": "orange"} -->
+# Advanced Workflows
+### Mastering Claude Code
+
+---
+
+<!-- slide: {"type": "content", "theme": "dark"} -->
+## Curate Context
+
+```
+/context                  — visualize what's in your context window
+                            Check at startup for tools/MCPs in particular
+
+/compact {instructions}   — summarize and compact to smaller size
+
+/clear                    — clear the current context window
+```
+
+> Keep context focused — a leaner context means faster, more accurate responses.
+
+---
+
+<!-- slide: {"type": "content", "theme": "light"} -->
+## Hooks
+
+Extend Claude Code behavior with shell commands triggered at lifecycle events:
+
+```json
+{
+  "hooks": {
+    "PostToolUse": [{
+      "matcher": "Write|Edit",
+      "hooks": [{"type": "command", "command": "npm run lint"}]
+    }],
+    "Stop": [{
+      "hooks": [{"type": "command", "command": "say 'Claude is done'"}]
+    }]
+  }
+}
+```
+
+**Use cases:** Notifications (Slack, text), auto-formatting, logging, correcting Claude behavior
+
+---
+
+<!-- slide: {"type": "section", "theme": "orange"} -->
+# Modify Context
+
+---
+
+<!-- slide: {"type": "content", "theme": "light"} -->
+## Custom Slash Commands
+
+Create reusable prompt templates in `.claude/commands/` or `~/.claude/commands/`:
+
+```markdown
+<!-- .claude/commands/code-review.md -->
+# Code Review
+
+Run a thorough review of staged changes:
+1. Check for security vulnerabilities
+2. Verify test coverage
+3. Confirm conventions match CLAUDE.md
+4. Suggest improvements
+```
+
+Use `/code-review` in any Claude Code session in this repo.
+
+---
+
+<!-- slide: {"type": "content", "theme": "light"} -->
+## Sub-Agents
+
+Claude Code can spin up sub-agents with isolated context:
+
+- **Context** — Sub-agents have their own context, preserving the main agent's window
+- **Specialization** — Provide specialized system prompts to each sub-agent
+- **Permissions** — Each sub-agent can have different tool access levels
+
+```
+/agents   — configure sub-agents (have Claude help create them)
+```
+
+---
+
+<!-- slide: {"type": "content", "theme": "light"} -->
+## Skills
+
+Claude loads **specialized knowledge only when needed** — keeping context clean while accessing expertise on-demand.
+
+Store skills as markdown files in `.claude/` and reference them in prompts or CLAUDE.md. Claude activates the right skill for the task at hand.
+
+---
+
+<!-- slide: {"type": "section", "theme": "orange"} -->
+# More!
+
+---
+
+<!-- slide: {"type": "content", "theme": "light"} -->
+## Claude Code in GitHub Actions
+
+Bring Claude Code into your CI/CD pipeline:
+
+```bash
+# Get started from within Claude Code
+/install-github-app
+```
+
+- Tag **@claude** on issues and PRs to trigger edits remotely
+- Automatically review pull requests for vulnerabilities before merging
+- Add Claude to any step of your CI/CD process
+- Customize and deploy workflows using the Agent SDK
+
+---
+
+<!-- slide: {"type": "content", "theme": "light"} -->
+## Parallel Claude
+
+Run multiple Claude Code instances simultaneously on independent tasks — each with its own context, working in separate branches or directories.
+
+- Coordinate parallel workstreams from a single orchestrating session
+- Use sub-agents to aggregate results back to the parent
+- Ideal for large codebases with independent modules
+
+---
+
+<!-- slide: {"type": "content", "theme": "light"} -->
+## Plugins
+
+Share and distribute Claude Code extensions in a single format:
+
+- **MCP servers** — data sources and external tool connections
+- **Slash commands** — reusable prompt templates
+- **Sub-agents** — specialized agents with custom prompts and permissions
+- **Hooks** — automated lifecycle behaviors
+
+**Enterprise Marketplaces** — Organizations can create internal marketplaces to distribute approved plugins across teams, standardizing workflows.
+
+---
+
+<!-- slide: {"type": "content", "theme": "dark"} -->
+## Optimize Your Setup
+
+```
+/theme              — enable light/dark mode
+/permissions        — customize tool permissions
+/config             — turn on notifications
+/add-dir            — give Claude access to more folders
+/statusline         — add a custom status line (e.g. current git branch)
+/install-github-app — tag @claude on your issues & PRs
+```
+
+**Tip:** Enable macOS dictation to talk to Claude hands-free.
+
+---
+
+<!-- slide: {"type": "content", "theme": "dark"} -->
+## Keybindings
+
+Key combos for common tasks:
+
+```
+Shift+Tab     — auto-accept edits
+#             — create a memory
+!             — enter bash mode
+@             — add a file/folder to context
+Esc           — cancel current action
+Double-Esc    — jump back in history (--resume to resume)
+Ctrl+R        — verbose output
+/             — slash commands
+```
+
+---
+
+<!-- slide: {"type": "section", "theme": "orange"} -->
+# Lab Time
+### Part 2
 
 ---
 
@@ -371,25 +431,42 @@ Open your lab in the browser and follow the steps:
 <!-- slide: {"type": "content", "theme": "light"} -->
 ## What We Covered
 
-- Claude Code installation and core commands
-- CLAUDE.md for project-level memory
-- Slash commands and hooks
+- Claude Opus 4.5 and Sonnet 4.5 — the frontier models powering Claude Code
+- Claude Code: agentic across the full SDLC, not just a copilot
+- CLAUDE.md for project memory (hierarchical across repos and users)
+- Context management: /context, /compact, /clear
 - MCP servers for external integrations
-- Sub-agents and parallel execution
-- Custom slash commands
-- Practical prompt patterns
+- Hooks, custom slash commands, sub-agents, skills
+- GitHub Actions integration and parallel Claude
+- Plugins, setup tips, and keybindings
 
 ---
 
 <!-- slide: {"type": "content", "theme": "light"} -->
 ## Resources
 
-- **Docs:** [claude.ai/code](https://claude.ai/code)
+- **Docs:** [docs.anthropic.com/claude-code](https://docs.anthropic.com/claude-code)
 - **MCP Servers:** [modelcontextprotocol.io](https://modelcontextprotocol.io)
 - **API Reference:** [docs.anthropic.com](https://docs.anthropic.com)
 - **Community:** [claude.ai/community](https://claude.ai/community)
 
 Feedback form — link in chat.
+
+---
+
+<!-- slide: {"type": "content", "theme": "dark"} -->
+## API Access
+
+Get API credits for today's workshop:
+
+**{{api_credit_url}}**
+
+Your Claude Code already uses your personal account. These credits are for building your own apps with the Anthropic API directly.
+
+```bash
+npm install @anthropic-ai/sdk
+export ANTHROPIC_API_KEY=sk-...
+```
 
 ---
 
