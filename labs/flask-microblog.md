@@ -8,6 +8,10 @@ prerequisites: ["Claude Code installed and set up", "Python 3.10+ installed", "G
 tags: [python, flask, claude-code]
 ---
 
+# Claude Code Tutorial - Flask Microblog
+
+A step-by-step guide to use Claude Code with Flask Microblog, the canonical Flask sample application from the Flask Mega-Tutorial. By the end, you'll understand how to use Claude Code for common Python/Flask development tasks.
+
 ### Troubleshooting
 
 If Claude doesn't succeed initially:
