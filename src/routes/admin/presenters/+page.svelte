@@ -118,11 +118,15 @@
 	async function handleDelete(p: Presenter) {
 		if (!supabase) return;
 		deleting = p.id;
-		await supabase.rpc('delete_presenter', { p_id: p.id });
-		presenters = presenters.filter((x) => x.id !== p.id);
+		const { error } = await supabase.rpc('delete_presenter', { p_id: p.id });
+		if (error) {
+			addToast('Failed to delete presenter', 'error');
+		} else {
+			presenters = presenters.filter((x) => x.id !== p.id);
+			addToast('Presenter deleted', 'success');
+		}
 		deleting = null;
 		confirmingDelete = null;
-		addToast('Presenter deleted', 'success');
 	}
 </script>
 

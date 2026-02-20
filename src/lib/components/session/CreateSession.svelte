@@ -54,12 +54,13 @@
 		});
 
 		if (sessionId && selectedPresenterIds.length > 0) {
-			await setSessionPresenters(sessionId, selectedPresenterIds);
+			const ok = await setSessionPresenters(sessionId, selectedPresenterIds);
+			if (!ok) addToast('Session created but presenter linking failed.', 'error');
 		}
 
 		if (sessionId) {
 			createdUrl = `${window.location.origin}${base}/session/${sessionId}`;
-			addToast('Session created!', 'success');
+			if (selectedPresenterIds.length === 0) addToast('Session created!', 'success');
 		} else {
 			addToast('Failed to create session. Check Supabase configuration.', 'error');
 		}

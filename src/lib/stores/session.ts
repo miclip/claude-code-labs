@@ -52,12 +52,17 @@ export async function fetchSessionPresenters(sessionId: string): Promise<Present
 	return (data ?? []) as Presenter[];
 }
 
-export async function setSessionPresenters(sessionId: string, presenterIds: string[]): Promise<void> {
-	if (!supabase) return;
-	await supabase.rpc('set_session_presenters', {
+export async function setSessionPresenters(sessionId: string, presenterIds: string[]): Promise<boolean> {
+	if (!supabase) return false;
+	const { error } = await supabase.rpc('set_session_presenters', {
 		p_session_id: sessionId,
 		p_presenter_ids: presenterIds
 	});
+	if (error) {
+		console.error('Failed to set session presenters:', error);
+		return false;
+	}
+	return true;
 }
 
 export async function fetchAllPresenters(): Promise<Presenter[]> {
