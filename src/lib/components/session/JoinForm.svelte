@@ -84,7 +84,7 @@
 			</form>
 		</div>
 		<p class="prereqs-link">
-			Need help setting up? <a href="{base}/session/{session.id}/prereqs" target="_blank">View prerequisites checklist →</a>
+			Need help setting up? <a href="{base}/session/{session.id}/prereqs" target="_blank" rel="noopener noreferrer">View prerequisites checklist →</a>
 		</p>
 	</div>
 </div>

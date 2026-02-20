@@ -24,6 +24,10 @@
 		return () => { handlers.forEach(({ el, handler }) => el.removeEventListener('change', handler)); };
 	});
 
+	function escapeHtml(s: string): string {
+		return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+	}
+
 	function printPrereqs() {
 		const win = window.open('', '_blank');
 		if (!win) return;
@@ -33,8 +37,8 @@
 		const labBlock = lab && lab.prerequisites.length > 0
 			? `<div class="lab-block">
 				<div class="lab-tag">LAB PREREQUISITES</div>
-				<h2>${lab.title}</h2>
-				<ul>${lab.prerequisites.map((p: string) => `<li>${p}</li>`).join('')}</ul>
+				<h2>${escapeHtml(lab.title)}</h2>
+				<ul>${lab.prerequisites.map((p: string) => `<li>${escapeHtml(p)}</li>`).join('')}</ul>
 			</div>`
 			: '';
 

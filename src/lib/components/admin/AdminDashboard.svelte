@@ -76,6 +76,7 @@
 			<a
 				href="{base}/session/{session.id}/prereqs"
 				target="_blank"
+				rel="noopener noreferrer"
 				class="btn btn-secondary btn-sm"
 			>Prerequisites ↗</a>
 			<button class="btn btn-secondary btn-sm" onclick={exportCsv}>Export CSV</button>
